@@ -1,0 +1,29 @@
+<div class="container"> 
+    
+    <form class="form-group" (ngSubmit)="addTodo($event)">
+        <div class="input-group">
+            <input type="text" class="form-control " name="todoSubject" [(ngModel)]="todoSubject" placeholder="Add your Todo Here">
+            <div class="input-group-btn">                
+                <!--<input type="button" class="btn btn-warning " value="+ IS DONE">  -->
+
+                <div class="dropdown btn-group">
+                    <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{selectedStatus.toUpperCase() }} &nbsp;&nbsp;<span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a (click)="selectedStatus='done'" >Done</a></li>
+                        <li><a (click)="selectedStatus='in progress'">In progress</a></li>
+                        <li><a (click)="selectedStatus='stop'">Stop</a></li>                    
+                    </ul>
+                </div>
+
+                <input type="submit" class="btn btn-primary " value="ADD" >  
+                
+            </div>
+
+        </div>
+    </form>
+
+    <todotable [reloadTable]="triggerReloadTable" > </todotable>
+
+</div>

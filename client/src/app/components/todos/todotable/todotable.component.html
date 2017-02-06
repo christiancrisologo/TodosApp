@@ -1,0 +1,62 @@
+<div class="row">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th> <input type="checkbox" checked> </th>
+        <th>#</th>
+        <th>Todo</th>
+        <th>Date Created</th>
+        <th>Status</th>
+        <th></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of dataprovider; let i = index" (dblclick)="activeItem=item">
+        <td>
+          <input type="checkbox" checked>
+        </td>
+
+        <td scope="row">{{i}}</td>
+        <td> <input type="text" class="form-control " name="todoSubject" [(ngModel)]="item.subject" *ngIf="editmode">
+          <span *ngIf="!editmode"> {{item.subject}} </span> </td>
+        <td>{{item.createddate}}</td>
+        <td>
+          <div class="dropdown btn-group" *ngIf="editmode">
+            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{item.status.toUpperCase() }} &nbsp;&nbsp;<span class="caret"></span>
+                    </button>
+            <ul class="dropdown-menu">
+              <li><a (click)="item.status='done'">Done</a></li>
+              <li><a (click)="item.status='in progress'">In progress</a></li>
+              <li><a (click)="item.status='stop'">Stop</a></li>
+            </ul>
+          </div>
+
+         <span *ngIf="!editmode">
+            {{item.status}}
+         </span>
+         
+         </td>
+
+        <td>
+          <div class="inline">
+
+            <button *ngIf="editmode" class="btn btn-success" (click)="saveTodo(item);editmode=false">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+              </button>
+
+            <button *ngIf="!editmode" class="btn btn-primary" (click)="editmode=true">
+                <span class="glyphicon glyphicon-edit"></span>
+              </button>
+            <button class="btn btn-danger" (click)="deleteTodo(item)">
+                <span class="glyphicon glyphicon-trash"></span>
+              </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+</div>

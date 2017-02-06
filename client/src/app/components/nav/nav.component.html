@@ -1,0 +1,7 @@
+<nav>
+  <ul class="nav nav-pills pull-right">
+    <li class="nav-item" *ngFor="let item of  routerLinks">
+       <a class="nav-link" [routerLink]="item" [ngClass]="{'active':currentRoute===item}" >{{item.substring(1).toUpperCase()}}</a>
+    </li>
+  </ul>
+</nav>
